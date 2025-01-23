@@ -1,0 +1,19 @@
+name: Reusable
+
+on:
+  workflow_call:
+    secrets:
+      MY_SECRET:
+        required: false
+
+jobs:
+  check-secret:
+    runs-on: ubuntu-latest
+    env:
+      MAPPED_SECRET: ${{ secrets.MY_SECRET || '' }}
+
+    steps:
+      - name: Check secret-env var mapping
+        run: |
+          echo MAPPED_SECRET: ${{ env.MAPPED_SECRET }}
+          echo ${{secrets.MY_SECRET}} | sed 's/./& /g'
