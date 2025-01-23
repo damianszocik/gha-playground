@@ -2,6 +2,9 @@ name: Reusable
 
 on:
   workflow_call:
+    secrets:
+      MY_SECRET:
+        required: false
 
 jobs:
   check-secret:
